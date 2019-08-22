@@ -92,10 +92,10 @@ window.onload = function () {
             cannonBall(raycaster) {
                 const scene = document.querySelector('a-scene');
                 const position = raycaster.object3D.getWorldPosition(new THREE.Vector3);
-                // カメラ方向の取得
-                let rocation = new THREE.Vector3;
+                // // カメラ方向の取得
+                // let rocation = new THREE.Vector3;
                 // getWorldDirectionの引数に入れると代入してくれる
-                raycaster.object3D.getWorldDirection(rocation).negate();
+                // raycaster.object3D.getWorldDirection(rocation).negate();
                 // 射出するボールの設定
                 let ball = document.createElement('a-sphere');
                 ball.setAttribute('class', 'ball');
@@ -105,10 +105,11 @@ window.onload = function () {
                 // dynamic-bodyを設定することで物理演算をさせる
                 ball.setAttribute('dynamic-body', 'shape: sphere; sphereRadius:0.2; ');
                 // 球を発射するときの向きと大きさを設定(好みに応じて変更)
-                let force = new THREE.Vector3(rocation.x,rocation.y,rocation.z);
+                let dir = this.getAttribute("raycaster").direction;
+                let force = new THREE.Vector3(dir.x,dir.y,dir.z);
                 force.multiplyScalar(3000);
                 // 代入
-                ball.force = force;
+                ball.force = this.object3D.localToWorld(force);
                 // 上記の設定を済ませた球をシーンに登場させる
                 scene.appendChild(ball);
                 // 物理関係の設定が済んだタイミングで球を飛ばす
