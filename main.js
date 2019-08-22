@@ -17,6 +17,9 @@ window.onload = function () {
                 dependencies: ['raycaster'],
                 init() {
                     const listener = this;
+                    this.el.addEventListener('triggerdown', function (e) {
+                        vue.cannonBall(listener.el);
+                    });
                     document.addEventListener('mousedown',() => {
                         // 玉を投げる
                         // vue.cannonBall(listener.el);
