@@ -18,7 +18,38 @@ window.onload = function () {
                 init() {
                     const listener = this;
                     this.el.addEventListener('triggerdown', function (e) {
-                        vue.cannonBall(listener.el);
+                        // vue.cannonBall(listener.el);
+                        //コントローラの位置を取得(thisはコントローラ)
+                    var point = this.object3D.getWorldPosition();
+                    //ボールを生成
+                    var ball = document.createElement('a-sphere');
+                    ball.setAttribute('class', 'ball');
+                    ball.setAttribute('scale', '0.2 0.2 0.2');
+                    ball.setAttribute('position', point);
+                    //dynamic-bodyを設定することで物理演算をさせる
+                    ball.setAttribute('dynamic-body', 'shape: sphere; sphereRadius:0.2; ');
+                    //コントローラのレイキャスターの向きを取得
+                    var dir = this.getAttribute("raycaster").direction;
+                    //球を発射するときの向きと大きさを設定(好みに応じて変更) 
+                    var force = new THREE.Vector3(dir.x, dir.y, dir.z);
+                    force.multiplyScalar(2000);
+                    //レイキャスターの向きはコントローラを原点としたローカル座標系なのでワールド座標に変換                   
+                    ball.force = this.object3D.localToWorld(force);
+                    //上記の設定を済ませた球をシーンに登場させる
+                    var scene = document.querySelector('a-scene');
+                    scene.appendChild(ball);
+                    //物理関係の設定が済んだタイミングで球を飛ばす 
+                    ball.addEventListener('body-loaded', function (e) {
+                        //ボールの位置を取得(ここでのthisはballを示す)
+                        var p = this.object3D.position;
+                        //加える力は先ほど計算したものを使用
+                        var f = this.force;
+                        //球に力を加えて飛ばす
+                        this.body.applyForce(
+                            new CANNON.Vec3(f.x, f.y, f.z),
+                            new CANNON.Vec3(p.x, p.y, p.z)
+                        );
+                    });
                     });
                     document.addEventListener('mousedown',() => {
                         // 玉を投げる
