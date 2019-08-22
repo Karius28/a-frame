@@ -13,21 +13,19 @@
   <a-scene id="scene">
     <a-camera id="camera" rotation="0 0 0" visible="true" position="0 1.5 3.5" camera wasd-controls look-controls raycaster="objects: .collidable; far: 1.2;showLine: true;">
       <!-- <a-text position="0 0 -2" :value="cameraPosition" color="#000"></a-text> -->
-      <a-entity raycaster="objects: .collidable; far:1.2;" laser-controls="hand: left" input-listener></a-entity>
-      <a-entity id="ctlL" teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head; startEvents: teleportstart; endEvents: teleportend"
-        raycaster="objects: .collidable; far:1.2;" laser-controls="hand: left" input-listener>
-      </a-entity>
+      <a-entity id="ctlR" laser-controls="hand: right"></a-entity>
+      <a-entity id="ctlL" laser-controls="hand: left"></a-entity>
     </a-camera>
     <a-box class="collidable" static-body width="1" height="1" position="-1 1.5 1" rotation="0 0 0" color="#4CC3D9" get-listener></a-box>
     <a-sphere class="collidable" static-body position="0 2 -1" rotation="-40 0 0" radius="1.25" color="#EF2D5E" get-listener></a-sphere>
     <a-cylinder class="collidable" static-body position="2 1 1" rotation="-16 24 36" radius="0.5" height="1.5" color="#FFC65D"
       get-listener></a-cylinder>
-    <a-plane id="plane01" static-body position="0 0 0" rotation="-90 0 0" width="10" height="10" color="#7BC8A4" shadow> </a-plane>
-    <a-plane id="plane02" static-body position="0 5 0" rotation="90 0 0" width="10" height="10" color="#7BC8A4" shadow> </a-plane>
-    <a-plane id="plane03" static-body position="0 2.5 -5" rotation="0 0 0" width="10" height="5" color="#7BC8FF" shadow> </a-plane>
-    <a-plane id="plane04" static-body position="0 2.5 5" rotation="0 180 0" width="10" height="5" color="#7BC8FF" shadow> </a-plane>
-    <a-plane id="plane05" static-body position="5 2.5 0" rotation="0 -90 0" width="10" height="5" color="#7BC8FF" shadow> </a-plane>
-    <a-plane id="plane06" static-body position="-5 2.5 0" rotation="0 90 0" width="10" height="5" color="#7BC8FF" shadow> </a-plane>
+    <a-plane id="plane01" static-body position="0 0 0" rotation="-90 0 0" width="10" height="10" color="#333333" shadow> </a-plane>
+    <a-plane id="plane02" static-body position="0 5 0" rotation="90 0 0" width="10" height="10" color="#333333" shadow> </a-plane>
+    <a-plane id="plane03" static-body position="0 2.5 -5" rotation="0 0 0" width="10" height="5" color="#666666" shadow> </a-plane>
+    <a-plane id="plane04" static-body position="0 2.5 5" rotation="0 180 0" width="10" height="5" color="#666666" shadow> </a-plane>
+    <a-plane id="plane05" static-body position="5 2.5 0" rotation="0 -90 0" width="10" height="5" color="#666666" shadow> </a-plane>
+    <a-plane id="plane06" static-body position="-5 2.5 0" rotation="0 90 0" width="10" height="5" color="#666666" shadow> </a-plane>
     <a-sky id="sky" color="#ECECEC"></a-sky>
   </a-scene>
 </body>

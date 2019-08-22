@@ -3,7 +3,7 @@ window.onload = function () {
     // Vueと何らかの要素がリンクしているとinspectorでの視点移動ができなくなる
     // さらに恐らくVueとリンクすると謎の要素が追加されているみたい
     const app = new Vue({
-        el: '#scene',
+        // el: '#scene',
         data: {
             cameraPosition: '',
             grip: false,
